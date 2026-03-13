@@ -1,0 +1,137 @@
+#import "@preview/touying:0.6.1": *
+#import themes.simple: *
+#import "@preview/cetz:0.3.4"
+#import "../lib.typ": mark as codez-mark, parse as codez-parse, cetz-block as codez-cetz-block
+
+#show: simple-theme.with(aspect-ratio: "16-9")
+
+#set raw(
+  theme: "../syntaxes/codez-light.tmTheme",
+  syntaxes: ("../syntaxes/mlir.sublime-syntax",),
+)
+
+#let anno-color = rgb("#4a0f2f")
+#let anno-bbox-stroke = 1.6pt + rgb("#7a1f44")
+#let code-block-stroke = 1pt + anno-color
+
+#let codez-block(..args) = codez-cetz-block(
+  stroke: code-block-stroke,
+  mark-inset: (x: 4pt, y: 2pt),
+  badge-tag-fill: anno-color,
+  badge-tag-text: white,
+  badge-lang-fill: rgb("#f7f7f2"),
+  badge-lang-text: anno-color,
+  badge-stroke: code-block-stroke,
+  badge-radius: 6pt,
+  badge-size: 14pt,
+  badge-offset: (6pt, 0pt),
+  badge-anchor: "south-west",
+  badge-pad-x: 6pt,
+  badge-pad-y: 4pt,
+  ..args,
+)
+
+#let swiglu-lines = (
+  "...",
+  "%8 = linalg.generic {ins(%7: tensor<1x2x16xf32>) outs(%5: tensor<1x2x16xf32>)} {",
+  "  %19 = arith.negf %in : f32",
+  "  %20 = math.exp %19 : f32",
+  "  %21 = arith.addf %20, %cst_1 : f32",
+  "  %22 = arith.divf %cst_1, %21 : f32",
+  "  linalg.yield %22 : f32",
+  "} -> tensor<1x2x16xf32>",
+  "",
+  "%9 = linalg.generic {ins(%8, %7: tensor<1x2x16xf32>, tensor<1x2x16xf32>) outs(%5: tensor<1x2x16xf32>)} {",
+  "  %19 = arith.mulf %in, %in_7 : f32",
+  "  linalg.yield %19 : f32",
+  "} -> tensor<1x2x16xf32>",
+  "...",
+)
+
+#let mm-lines = (
+  "...",
+  "%13 = linalg.generic ... ins(%8, %10, %transposed_4 : tensor<1x2x16xf32>, tensor<1x2x16xf32>, tensor<16x8xf32>) outs(%12 : tensor<1x1x2x8xf32>) {",
+  "^bb0(%in: f32, %in_6: f32, %in_7: f32, %out: f32):",
+  "  %19 = r_arith.div(%14 : !r_arith.r_const, %18 : !r_arith.r_expr)",
+  "  ...",
+  "  %21 = fixed_pt_arith.from_float <7, -15, signed> from %in : f32 {rounding = 3 : i32, saturate = true}",
+  "  %22 = fixed_pt_arith.rescale_2pow %21 : <7, -15, signed> shift by -7",
+  "  %23 = fixed_pt_arith.extract <0, -1, signed> from %22 : <0, -22, signed>",
+  "  %24 = fixed_pt_arith.get_int from %23 : <0, -1, signed>",
+  "  %25 = arith.index_cast %24 : i2 to index",
+  "  %26:6 = scf.index_switch %25 -> !fixed_pt_arith.fixedpt<3, -17, signed>, !fixed_pt_arith.fixedpt<0, -17, signed>, !fixed_pt_arith.fixedpt<-3, -17, signed>, !fixed_pt_arith.fixedpt<-5, -17, signed>, !fixed_pt_arith.fixedpt<-8, -17, signed>, !fixed_pt_arith.fixedpt<-9, -17, signed>",
+  "  case 0 {",
+  "    %64 = fixed_pt_arith.const <66766, !fixed_pt_arith.fixedpt<3, -17, signed>>",
+  "...",
+)
+
+#let swiglu = codez-parse(swiglu-lines.join("\n"))
+#let mm = codez-parse(mm-lines.join("\n"))
+
+#let m-sigmoid = codez-mark("m_sigmoid", start: 3, end: 7, trim-left: true)
+#let m-mulf = codez-mark("m_mulf", start: 11, end: 11, trim-left: true)
+#let m-mm-entry = codez-mark("m_mm_entry", start: 2, end: 2, trim-left: true)
+#let m-mm-fixed = codez-mark("m_mm_fixed", start: 6, end: 11, trim-left: true)
+
+#slide(
+  repeat: 4,
+  self => [
+    #let step = self.subslide
+    #cetz.canvas(length: 1pt, {
+      import cetz.draw: *
+
+      let left-w = 455pt
+      let right-w = 480pt
+      let gap = 20pt
+
+      codez-block(
+        name: "sw",
+        at: (0, 0),
+        width: left-w,
+        wrap: true,
+        code: swiglu.code,
+        lang: "mlir",
+        badge-tag: "F",
+        badge-lang: "MLIR",
+        marks: (m-sigmoid, m-mulf),
+        inline-marks: false,
+        text-size: 11pt,
+        line-gap: 4pt,
+        mark-stroke: none,
+      )
+
+      codez-block(
+        name: "mm",
+        at: (left-w + gap, 0),
+        width: right-w,
+        wrap: true,
+        code: mm.code,
+        lang: "mlir",
+        badge-tag: "G",
+        badge-lang: "MLIR",
+        marks: (m-mm-entry, m-mm-fixed),
+        inline-marks: false,
+        text-size: 11pt,
+        line-gap: 4pt,
+        mark-stroke: none,
+      )
+
+      if step >= 1 {
+        rect("sw.m_sigmoid.north-west", "sw.m_sigmoid.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+      }
+
+      if step >= 2 {
+        rect("sw.m_mulf.north-west", "sw.m_mulf.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+      }
+
+      if step >= 3 {
+        rect("mm.m_mm_entry.north-west", "mm.m_mm_entry.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+        line("sw.m_mulf.east", "mm.m_mm_entry.west", stroke: 1.2pt + anno-color, mark: (end: "stealth"))
+      }
+
+      if step >= 4 {
+        rect("mm.m_mm_fixed.north-west", "mm.m_mm_fixed.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+      }
+    })
+  ],
+)
