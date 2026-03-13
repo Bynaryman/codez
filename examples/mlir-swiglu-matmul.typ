@@ -119,7 +119,7 @@
     (rel: (16pt, -10pt), to: "py.m_py_linear.east"),
     text(
       "MatMul projections",
-      size: 11pt,
+      size: 14pt,
       weight: "bold",
       fill: anno-color,
     ),

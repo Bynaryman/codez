@@ -11,7 +11,7 @@ Text highlights that render inside CeTZ figures, enabling beautiful and complex 
 #show: init.with()
 ```
 
-### Llama.py Panel (Reproducible Snippet)
+### Llama.py Panel Snippet
 
 ```typ
 #import "@preview/cetz:0.3.4"
@@ -77,6 +77,8 @@ Text highlights that render inside CeTZ figures, enabling beautiful and complex 
   content((rel: (16pt, 0pt), to: "py.m_py_swiglu.east"), [$z = xW_"gate"$#linebreak()$h = (xW_"up") ⊙ sigma(z)$#linebreak()$y = hW_"down"$], anchor: "west")
 })
 ```
+
+[![Llama.py panel preview](docs/previews/mlir-swiglu-matmul-thumb.png)](docs/previews/mlir-swiglu-matmul.pdf)
 
 ### Public API
 
