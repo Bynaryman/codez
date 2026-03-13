@@ -112,6 +112,11 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 - [Slides overlay](examples/slide-overlay.typ)
 - [Poster panel](examples/poster-panel.typ)
 
+### Publish Workflow
+
+- [Publishing checklist](docs/PUBLISHING.md)
+- Local validation: `./scripts/check.sh`
+
 ### Credits
 
 `codez` vendors and extends parts of `codly` (MIT), adapted for geometry-aware overlays.
