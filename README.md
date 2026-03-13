@@ -111,6 +111,7 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 - [Quick start](examples/quickstart.typ)
 - [Slides overlay](examples/slide-overlay.typ)
 - [Poster panel](examples/poster-panel.typ)
+- [Touying animation (MLIR to SV)](examples/touying-mlir-sv-animated.typ)
 
 ### Publish Workflow
 
