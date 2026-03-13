@@ -27,8 +27,8 @@ Text highlights that render inside CeTZ figures, enabling beautiful and complex 
 
 ### Preview Gallery
 
-[![MLIR SwiGLU + MatMul preview](docs/previews/mlir-swiglu-matmul.png)](docs/previews/mlir-swiglu-matmul.pdf)
-[![MLIR to SystemVerilog preview](docs/previews/mlir-to-systemverilog-poster.png)](docs/previews/mlir-to-systemverilog-poster.pdf)
+[![MLIR SwiGLU + MatMul preview](docs/previews/mlir-swiglu-matmul-thumb.png)](docs/previews/mlir-swiglu-matmul.pdf)
+[![MLIR to SystemVerilog preview](docs/previews/mlir-to-systemverilog-poster-thumb.png)](docs/previews/mlir-to-systemverilog-poster.pdf)
 
 ### Syntax Theme
 

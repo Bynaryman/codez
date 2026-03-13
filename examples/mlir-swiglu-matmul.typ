@@ -116,7 +116,17 @@
   rect("py.m_py_linear.north-west", "py.m_py_linear.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   rect("py.m_py_swiglu.north-west", "py.m_py_swiglu.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   content(
-    (py-w + 18pt, -72pt),
+    (rel: (16pt, -10pt), to: "py.m_py_linear.east"),
+    text(
+      "MatMul projections: W_gate, W_up, W_down",
+      size: 11pt,
+      weight: "bold",
+      fill: anno-color,
+    ),
+    anchor: "west",
+  )
+  content(
+    (rel: (16pt, 0pt), to: "py.m_py_swiglu.east"),
     [
       #set text(size: 13pt, fill: anno-color, weight: "bold")
       $z = x W_"gate"$#linebreak()
@@ -171,6 +181,11 @@
     mark-stroke: none,
   )
   rect("sw.m_mulf.north-west", "sw.m_mulf.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+  content(
+    (rel: (12pt, 0pt), to: "sw.m_mulf.east"),
+    text("MatMul contribution in SwiGLU", size: 11pt, weight: "bold", fill: anno-color),
+    anchor: "west",
+  )
 })
 
 #pagebreak()
@@ -194,6 +209,11 @@
     mark-stroke: none,
   )
   rect("mm.m_mm_entry.north-west", "mm.m_mm_entry.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+  content(
+    (rel: (12pt, 0pt), to: "mm.m_mm_entry.east"),
+    text("Lowered MatMul entry", size: 11pt, weight: "bold", fill: anno-color),
+    anchor: "west",
+  )
 })
 
 #pagebreak()
