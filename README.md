@@ -112,6 +112,7 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 - [Slides overlay](examples/slide-overlay.typ)
 - [Poster panel](examples/poster-panel.typ)
 - [Touying animation (MLIR to SV)](examples/touying-mlir-sv-animated.typ)
+- [Emeraude-style Touying showcase](examples/touying-emeraude-showcase.typ)
 
 ### Preview Gallery
 
@@ -119,10 +120,15 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 [![Slides overlay preview](docs/previews/slide-overlay.png)](docs/previews/slide-overlay.pdf)
 [![Poster panel preview](docs/previews/poster-panel.png)](docs/previews/poster-panel.pdf)
 [![Touying MLIR to SV preview](docs/previews/touying-mlir-sv-animated.png)](docs/previews/touying-mlir-sv-animated.pdf)
+[![Emeraude showcase preview](docs/previews/touying-emeraude-showcase.png)](docs/previews/touying-emeraude-showcase.pdf)
 
 Experimental HTML export for the Touying deck:
 - [Open `touying-mlir-sv-animated.html`](docs/previews/touying-mlir-sv-animated.html)
 - Typst HTML export currently ignores parts of Touying/CeTZ layout, so PDF/PNG previews are the reliable ones.
+
+MLIR color style used in the examples is bundled in:
+- [`syntaxes/codez-light.tmTheme`](syntaxes/codez-light.tmTheme)
+- [`syntaxes/mlir.sublime-syntax`](syntaxes/mlir.sublime-syntax)
 
 ### Publish Workflow
 
@@ -133,4 +139,3 @@ Experimental HTML export for the Touying deck:
 
 `codez` vendors and extends parts of `codly` (MIT), adapted for geometry-aware overlays.
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-# codez
