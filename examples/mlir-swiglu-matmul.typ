@@ -1,9 +1,7 @@
-#import "@preview/touying:0.6.1": *
-#import themes.simple: *
 #import "@preview/cetz:0.3.4"
 #import "../lib.typ": mark as codez-mark, parse as codez-parse, cetz-block as codez-cetz-block
 
-#show: simple-theme.with(aspect-ratio: "16-9")
+#set page(width: 29.7cm, height: 16.7cm, margin: 10pt)
 
 #set raw(
   theme: "../syntaxes/codez-light.tmTheme",
@@ -73,65 +71,94 @@
 #let m-mm-entry = codez-mark("m_mm_entry", start: 2, end: 2, trim-left: true)
 #let m-mm-fixed = codez-mark("m_mm_fixed", start: 6, end: 11, trim-left: true)
 
-#slide(
-  repeat: 4,
-  self => [
-    #let step = self.subslide
-    #cetz.canvas(length: 1pt, {
-      import cetz.draw: *
+#let w = 760pt
 
-      let top-w = 960pt
-      let bottom-w = 960pt
-      let bottom-y = -250pt
+// Page 1: SwiGLU math section only.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "sw",
+    at: (0, 0),
+    width: w,
+    wrap: true,
+    code: swiglu.code,
+    lang: "mlir",
+    badge-tag: "F",
+    badge-lang: "MLIR",
+    marks: (m-sigmoid, m-mulf),
+    inline-marks: false,
+    text-size: 12pt,
+    line-gap: 4pt,
+    mark-stroke: none,
+  )
+  rect("sw.m_sigmoid.north-west", "sw.m_sigmoid.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})
 
-      codez-block(
-        name: "sw",
-        at: (0, 0),
-        width: top-w,
-        wrap: true,
-        code: swiglu.code,
-        lang: "mlir",
-        badge-tag: "F",
-        badge-lang: "MLIR",
-        marks: (m-sigmoid, m-mulf),
-        inline-marks: false,
-        text-size: 11pt,
-        line-gap: 4pt,
-        mark-stroke: none,
-      )
+#pagebreak()
 
-      codez-block(
-        name: "mm",
-        at: (0, bottom-y),
-        width: bottom-w,
-        wrap: true,
-        code: mm.code,
-        lang: "mlir",
-        badge-tag: "G",
-        badge-lang: "MLIR",
-        marks: (m-mm-entry, m-mm-fixed),
-        inline-marks: false,
-        text-size: 11pt,
-        line-gap: 4pt,
-        mark-stroke: none,
-      )
+// Page 2: SwiGLU mul section only.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "sw",
+    at: (0, 0),
+    width: w,
+    wrap: true,
+    code: swiglu.code,
+    lang: "mlir",
+    badge-tag: "F",
+    badge-lang: "MLIR",
+    marks: (m-sigmoid, m-mulf),
+    inline-marks: false,
+    text-size: 12pt,
+    line-gap: 4pt,
+    mark-stroke: none,
+  )
+  rect("sw.m_mulf.north-west", "sw.m_mulf.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})
 
-      if step >= 1 {
-        rect("sw.m_sigmoid.north-west", "sw.m_sigmoid.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-      }
+#pagebreak()
 
-      if step >= 2 {
-        rect("sw.m_mulf.north-west", "sw.m_mulf.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-      }
+// Page 3: Matmul lowering entry.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "mm",
+    at: (0, 0),
+    width: w,
+    wrap: true,
+    code: mm.code,
+    lang: "mlir",
+    badge-tag: "G",
+    badge-lang: "MLIR",
+    marks: (m-mm-entry, m-mm-fixed),
+    inline-marks: false,
+    text-size: 12pt,
+    line-gap: 4pt,
+    mark-stroke: none,
+  )
+  rect("mm.m_mm_entry.north-west", "mm.m_mm_entry.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})
 
-      if step >= 3 {
-        rect("mm.m_mm_entry.north-west", "mm.m_mm_entry.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-        line("sw.m_mulf.south", "mm.m_mm_entry.north", stroke: 1.2pt + anno-color, mark: (end: "stealth"))
-      }
+#pagebreak()
 
-      if step >= 4 {
-        rect("mm.m_mm_fixed.north-west", "mm.m_mm_fixed.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-      }
-    })
-  ],
-)
+// Page 4: Fixed-point conversion chunk with wrap.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "mm",
+    at: (0, 0),
+    width: w,
+    wrap: true,
+    code: mm.code,
+    lang: "mlir",
+    badge-tag: "G",
+    badge-lang: "MLIR",
+    marks: (m-mm-entry, m-mm-fixed),
+    inline-marks: false,
+    text-size: 12pt,
+    line-gap: 4pt,
+    mark-stroke: none,
+  )
+  rect("mm.m_mm_fixed.north-west", "mm.m_mm_fixed.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})

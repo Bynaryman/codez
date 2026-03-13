@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "../lib.typ": mark as codez-mark, parse as codez-parse, cetz-block as codez-cetz-block
 
-#set page(width: 26cm, height: 16cm, margin: 8pt)
+#set page(width: 26cm, height: 11.5cm, margin: 8pt)
 
 #set raw(
   theme: "../syntaxes/codez-light.tmTheme",
@@ -72,17 +72,15 @@
 #let comb-add = codez-mark("comb_add", start: 11, end: 11, trim-left: true)
 #let sv-always = codez-mark("sv_always", start: 10, end: 15, trim-left: true)
 
+#let w = 690pt
+
+// Page 1: MLIR comb mul focus.
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
-
-  let comb-w = 960pt
-  let sv-w = 960pt
-  let sv-y = -300pt
-
   codez-block(
     name: "comb",
     at: (0, 0),
-    width: comb-w,
+    width: w,
     code: comb.code,
     wrap: true,
     lang: "mlir",
@@ -94,11 +92,41 @@
     inline-marks: false,
     mark-stroke: none,
   )
+  rect("comb.comb_mul.north-west", "comb.comb_mul.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})
 
+#pagebreak()
+
+// Page 2: MLIR comb add focus.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "comb",
+    at: (0, 0),
+    width: w,
+    code: comb.code,
+    wrap: true,
+    lang: "mlir",
+    badge-tag: "F",
+    badge-lang: "MLIR",
+    text-size: 13pt,
+    line-gap: 5pt,
+    marks: (comb-mul, comb-add),
+    inline-marks: false,
+    mark-stroke: none,
+  )
+  rect("comb.comb_add.north-west", "comb.comb_add.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+})
+
+#pagebreak()
+
+// Page 3: exported SystemVerilog sequential region.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
   codez-block(
     name: "sv",
-    at: (0, sv-y),
-    width: sv-w,
+    at: (0, 0),
+    width: w,
     code: sv.code,
     wrap: true,
     lang: "verilog",
@@ -110,9 +138,5 @@
     inline-marks: false,
     mark-stroke: none,
   )
-
-  rect("comb.comb_mul.north-west", "comb.comb_mul.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-  rect("comb.comb_add.north-west", "comb.comb_add.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   rect("sv.sv_always.north-west", "sv.sv_always.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-  line("comb.comb_add.south", "sv.sv_always.north", stroke: 1.2pt + uni-dark-blue, mark: (end: "stealth"))
 })
