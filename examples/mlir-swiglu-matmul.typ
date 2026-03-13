@@ -80,14 +80,14 @@
     #cetz.canvas(length: 1pt, {
       import cetz.draw: *
 
-      let left-w = 455pt
-      let right-w = 480pt
-      let gap = 20pt
+      let top-w = 960pt
+      let bottom-w = 960pt
+      let bottom-y = -250pt
 
       codez-block(
         name: "sw",
         at: (0, 0),
-        width: left-w,
+        width: top-w,
         wrap: true,
         code: swiglu.code,
         lang: "mlir",
@@ -102,8 +102,8 @@
 
       codez-block(
         name: "mm",
-        at: (left-w + gap, 0),
-        width: right-w,
+        at: (0, bottom-y),
+        width: bottom-w,
         wrap: true,
         code: mm.code,
         lang: "mlir",
@@ -126,7 +126,7 @@
 
       if step >= 3 {
         rect("mm.m_mm_entry.north-west", "mm.m_mm_entry.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-        line("sw.m_mulf.east", "mm.m_mm_entry.west", stroke: 1.2pt + anno-color, mark: (end: "stealth"))
+        line("sw.m_mulf.south", "mm.m_mm_entry.north", stroke: 1.2pt + anno-color, mark: (end: "stealth"))
       }
 
       if step >= 4 {

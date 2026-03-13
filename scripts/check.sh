@@ -7,7 +7,7 @@ cd "$repo_root"
 mkdir -p /tmp/codez-check
 
 printf 'Compiling curated examples...\n'
-typst compile --root . examples/touying-emeraude-mlir.typ /tmp/codez-check/touying-emeraude-mlir.pdf
-typst compile --root . examples/holigrail-pop-excerpt.typ /tmp/codez-check/holigrail-pop-excerpt.pdf
+typst compile --root . examples/mlir-swiglu-matmul.typ /tmp/codez-check/mlir-swiglu-matmul.pdf
+typst compile --root . examples/mlir-to-systemverilog-poster.typ /tmp/codez-check/mlir-to-systemverilog-poster.pdf
 
 printf 'Curated example compiles succeeded.\n'

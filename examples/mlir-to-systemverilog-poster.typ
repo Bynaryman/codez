@@ -1,7 +1,7 @@
 #import "@preview/cetz:0.3.4"
 #import "../lib.typ": mark as codez-mark, parse as codez-parse, cetz-block as codez-cetz-block
 
-#set page(width: 26cm, height: 11.5cm, margin: 8pt)
+#set page(width: 26cm, height: 16cm, margin: 8pt)
 
 #set raw(
   theme: "../syntaxes/codez-light.tmTheme",
@@ -75,9 +75,9 @@
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
 
-  let comb-w = 580pt
-  let sv-w = 360pt
-  let gap = 24pt
+  let comb-w = 960pt
+  let sv-w = 960pt
+  let sv-y = -300pt
 
   codez-block(
     name: "comb",
@@ -97,7 +97,7 @@
 
   codez-block(
     name: "sv",
-    at: (comb-w + gap, 0),
+    at: (0, sv-y),
     width: sv-w,
     code: sv.code,
     wrap: true,
@@ -114,5 +114,5 @@
   rect("comb.comb_mul.north-west", "comb.comb_mul.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   rect("comb.comb_add.north-west", "comb.comb_add.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   rect("sv.sv_always.north-west", "sv.sv_always.south-east", stroke: anno-bbox-stroke, radius: 2pt)
-  line("comb.comb_add.east", "sv.sv_always.west", stroke: 1.2pt + uni-dark-blue, mark: (end: "stealth"))
+  line("comb.comb_add.south", "sv.sv_always.north", stroke: 1.2pt + uni-dark-blue, mark: (end: "stealth"))
 })

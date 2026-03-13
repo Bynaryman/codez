@@ -20,15 +20,15 @@ Mark and annotate code blocks with geometry-friendly anchors for slides and post
 - `bbox-info`, `anchor`, `bbox`
 - `canvas`, `overlay`, `dot`, `arc`
 
-### Curated Examples (from your slides/poster)
+### Reference Examples
 
-- [Emeraude Touying excerpt (SwiGLU + MatMul, MLIR only)](examples/touying-emeraude-mlir.typ)
-- [Holigrail POP poster excerpt (MLIR to SystemVerilog)](examples/holigrail-pop-excerpt.typ)
+- [MLIR SwiGLU + MatMul (Touying)](examples/mlir-swiglu-matmul.typ)
+- [MLIR to SystemVerilog (Poster)](examples/mlir-to-systemverilog-poster.typ)
 
 ### Preview Gallery
 
-[![Emeraude MLIR excerpt preview](docs/previews/touying-emeraude-mlir.png)](docs/previews/touying-emeraude-mlir.pdf)
-[![Holigrail poster excerpt preview](docs/previews/holigrail-pop-excerpt.png)](docs/previews/holigrail-pop-excerpt.pdf)
+[![MLIR SwiGLU + MatMul preview](docs/previews/mlir-swiglu-matmul.png)](docs/previews/mlir-swiglu-matmul.pdf)
+[![MLIR to SystemVerilog preview](docs/previews/mlir-to-systemverilog-poster.png)](docs/previews/mlir-to-systemverilog-poster.pdf)
 
 ### Syntax Theme
 
