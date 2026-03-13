@@ -122,3 +122,4 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 
 `codez` vendors and extends parts of `codly` (MIT), adapted for geometry-aware overlays.
 See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+# codez
