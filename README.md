@@ -1,8 +1,8 @@
 ## codez
 
-Mark and annotate code blocks with geometry-friendly anchors for slides and posters.
+Text highlights that render inside CeTZ figures, enabling beautiful and complex code explanations for posters and slides.
 
-`codez` is built for cases where code is a visual object: you mark semantic ranges once, then reuse them for bboxes, dots, arcs, or custom Cetz overlays.
+`codez` is built for workflows where code is a visual object. It solves a limitation of many other package approaches that do not render properly inside CeTZ-based figures.
 
 ### Install
 
@@ -22,7 +22,7 @@ Mark and annotate code blocks with geometry-friendly anchors for slides and post
 
 ### Reference Examples
 
-- [MLIR SwiGLU + MatMul (Touying)](examples/mlir-swiglu-matmul.typ)
+- [SwiGLU + MatMul with Python math annotation](examples/mlir-swiglu-matmul.typ)
 - [MLIR to SystemVerilog (Poster)](examples/mlir-to-systemverilog-poster.typ)
 
 ### Preview Gallery

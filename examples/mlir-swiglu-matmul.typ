@@ -46,6 +46,24 @@
   "...",
 )
 
+#let py-lines = (
+  "class LlamaFfnSublayer(nn.Module):",
+  "    \"\"\"Llama FFN sublayer using SwiGLU.\"\"\"",
+  "",
+  "    def __init__(self, dim: int = 512, hidden_dim: int | None = None):",
+  "        super().__init__()",
+  "        if hidden_dim is None:",
+  "            hidden_dim = int(2 * (4 * dim) / 3)",
+  "        self.w_gate = nn.Linear(dim, hidden_dim, bias=False)",
+  "        self.w_up = nn.Linear(dim, hidden_dim, bias=False)",
+  "        self.w_down = nn.Linear(hidden_dim, dim, bias=False)",
+  "",
+  "    def forward(self, x: torch.Tensor) -> torch.Tensor:",
+  "        gate = F.silu(self.w_gate(x))",
+  "        up = self.w_up(x)",
+  "        return self.w_down(gate * up)",
+)
+
 #let mm-lines = (
   "...",
   "%13 = linalg.generic ... ins(%8, %10, %transposed_4 : tensor<1x2x16xf32>, tensor<1x2x16xf32>, tensor<16x8xf32>) outs(%12 : tensor<1x1x2x8xf32>) {",
@@ -63,17 +81,55 @@
   "...",
 )
 
+#let py = codez-parse(py-lines.join("\n"))
 #let swiglu = codez-parse(swiglu-lines.join("\n"))
 #let mm = codez-parse(mm-lines.join("\n"))
 
+#let m-py-linear = codez-mark("m_py_linear", start: 8, end: 10, trim-left: true)
+#let m-py-swiglu = codez-mark("m_py_swiglu", start: 13, end: 15, trim-left: true)
 #let m-sigmoid = codez-mark("m_sigmoid", start: 3, end: 7, trim-left: true)
 #let m-mulf = codez-mark("m_mulf", start: 11, end: 11, trim-left: true)
 #let m-mm-entry = codez-mark("m_mm_entry", start: 2, end: 2, trim-left: true)
 #let m-mm-fixed = codez-mark("m_mm_fixed", start: 6, end: 11, trim-left: true)
 
-#let w = 760pt
+#let w = 580pt
+#let py-w = 520pt
 
-// Page 1: SwiGLU math section only.
+// Page 1: Python NN snippet with math annotation.
+#cetz.canvas(length: 1pt, {
+  import cetz.draw: *
+  codez-block(
+    name: "py",
+    at: (0, 0),
+    width: py-w,
+    wrap: true,
+    code: py.code,
+    lang: "python",
+    badge-tag: "Llama.py",
+    badge-lang: "Python",
+    marks: (m-py-linear, m-py-swiglu),
+    inline-marks: false,
+    text-size: 12pt,
+    line-gap: 4pt,
+    mark-stroke: none,
+  )
+  rect("py.m_py_linear.north-west", "py.m_py_linear.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+  rect("py.m_py_swiglu.north-west", "py.m_py_swiglu.south-east", stroke: anno-bbox-stroke, radius: 2pt)
+  content(
+    (py-w + 18pt, -72pt),
+    [
+      #set text(size: 13pt, fill: anno-color, weight: "bold")
+      $z = x W_"gate"$#linebreak()
+      $h = (x W_"up") ⊙ sigma(z)$#linebreak()
+      $y = h W_"down"$
+    ],
+    anchor: "west",
+  )
+})
+
+#pagebreak()
+
+// Page 2: SwiGLU math section only.
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
   codez-block(
@@ -96,7 +152,7 @@
 
 #pagebreak()
 
-// Page 2: SwiGLU mul section only.
+// Page 3: SwiGLU mul section only.
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
   codez-block(
@@ -119,7 +175,7 @@
 
 #pagebreak()
 
-// Page 3: Matmul lowering entry.
+// Page 4: Matmul lowering entry.
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
   codez-block(
@@ -142,7 +198,7 @@
 
 #pagebreak()
 
-// Page 4: Fixed-point conversion chunk with wrap.
+// Page 5: Fixed-point conversion chunk with wrap.
 #cetz.canvas(length: 1pt, {
   import cetz.draw: *
   codez-block(

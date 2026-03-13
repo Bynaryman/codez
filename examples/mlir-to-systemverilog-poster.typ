@@ -72,7 +72,7 @@
 #let comb-add = codez-mark("comb_add", start: 11, end: 11, trim-left: true)
 #let sv-always = codez-mark("sv_always", start: 10, end: 15, trim-left: true)
 
-#let w = 690pt
+#let w = 440pt
 
 // Page 1: MLIR comb mul focus.
 #cetz.canvas(length: 1pt, {
