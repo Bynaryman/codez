@@ -95,7 +95,7 @@
   rect("comb.comb_mul.north-west", "comb.comb_mul.south-east", stroke: anno-bbox-stroke, radius: 2pt)
   content(
     (rel: (12pt, 0pt), to: "comb.comb_mul.east"),
-    text("MatMul in comb IR", size: 12pt, weight: "bold", fill: uni-dark-blue),
+    text("48-bit multiplication", size: 12pt, weight: "bold", fill: uni-dark-blue),
     anchor: "west",
   )
 })

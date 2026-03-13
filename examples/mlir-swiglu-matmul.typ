@@ -109,8 +109,8 @@
     badge-lang: "Python",
     marks: (m-py-linear, m-py-swiglu),
     inline-marks: false,
-    text-size: 12pt,
-    line-gap: 4pt,
+    text-size: 13pt,
+    line-gap: 5pt,
     mark-stroke: none,
   )
   rect("py.m_py_linear.north-west", "py.m_py_linear.south-east", stroke: anno-bbox-stroke, radius: 2pt)
@@ -118,7 +118,7 @@
   content(
     (rel: (16pt, -10pt), to: "py.m_py_linear.east"),
     text(
-      "MatMul projections: W_gate, W_up, W_down",
+      "MatMul projections",
       size: 11pt,
       weight: "bold",
       fill: anno-color,
@@ -129,7 +129,6 @@
     (rel: (16pt, 0pt), to: "py.m_py_swiglu.east"),
     [
       #set text(size: 13pt, fill: anno-color, weight: "bold")
-      $z = x W_"gate"$#linebreak()
       $h = (x W_"up") ⊙ sigma(z)$#linebreak()
       $y = h W_"down"$
     ],
