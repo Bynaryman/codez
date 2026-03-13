@@ -113,6 +113,17 @@ Inside Cetz, use `cetz-block` to place fully stylable code panels with badges an
 - [Poster panel](examples/poster-panel.typ)
 - [Touying animation (MLIR to SV)](examples/touying-mlir-sv-animated.typ)
 
+### Preview Gallery
+
+[![Quick start preview](docs/previews/quickstart.png)](docs/previews/quickstart.pdf)
+[![Slides overlay preview](docs/previews/slide-overlay.png)](docs/previews/slide-overlay.pdf)
+[![Poster panel preview](docs/previews/poster-panel.png)](docs/previews/poster-panel.pdf)
+[![Touying MLIR to SV preview](docs/previews/touying-mlir-sv-animated.png)](docs/previews/touying-mlir-sv-animated.pdf)
+
+Experimental HTML export for the Touying deck:
+- [Open `touying-mlir-sv-animated.html`](docs/previews/touying-mlir-sv-animated.html)
+- Typst HTML export currently ignores parts of Touying/CeTZ layout, so PDF/PNG previews are the reliable ones.
+
 ### Publish Workflow
 
 - [Publishing checklist](docs/PUBLISHING.md)
