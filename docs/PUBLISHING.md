@@ -10,6 +10,7 @@ Checklist before opening the PR:
 
 - `typst.toml` fields are complete and valid.
 - `README.md` examples are up-to-date and use `@preview/codez:0.1.0`.
+- Preview assets are up-to-date: `./scripts/generate-previews.sh`.
 - `LICENSE` matches manifest SPDX (`MIT`).
 - Documentation/examples are linked from README and excluded in manifest.
 - Package imports without errors on Typst `0.14.x`.

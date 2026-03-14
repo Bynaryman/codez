@@ -89,15 +89,44 @@ Text highlights that render inside CeTZ figures, enabling beautiful and complex 
 - `bbox-info`, `anchor`, `bbox`
 - `canvas`, `overlay`, `dot`, `arc`
 
+### Feature Gallery
+
+#### Python SwiGLU panel with math annotation
+
+[![Python SwiGLU panel preview](docs/previews/feature-llama-python-math.png)](examples/mlir-swiglu-matmul.typ)
+
+#### MLIR sigmoid region focus
+
+[![MLIR sigmoid focus preview](docs/previews/feature-mlir-swiglu-sigmoid.png)](examples/mlir-swiglu-matmul.typ)
+
+#### MLIR SwiGLU MatMul contribution
+
+[![MLIR SwiGLU MatMul preview](docs/previews/feature-mlir-swiglu-matmul.png)](examples/mlir-swiglu-matmul.typ)
+
+#### MLIR lowered MatMul entry
+
+[![MLIR lowered MatMul entry preview](docs/previews/feature-mlir-matmul-lowering.png)](examples/mlir-swiglu-matmul.typ)
+
+#### MLIR fixed-point conversion chunk with wrap
+
+[![MLIR fixed-point chunk preview](docs/previews/feature-mlir-fixed-point-chunk.png)](examples/mlir-swiglu-matmul.typ)
+
+#### Comb IR 48-bit multiplication highlight
+
+[![Comb IR 48-bit multiplication preview](docs/previews/feature-comb-ir-mul-48b.png)](examples/mlir-to-systemverilog-poster.typ)
+
+#### Comb IR post-matmul add path
+
+[![Comb IR post-matmul add preview](docs/previews/feature-comb-ir-add-path.png)](examples/mlir-to-systemverilog-poster.typ)
+
+#### SystemVerilog always_ff extraction
+
+[![SystemVerilog always_ff preview](docs/previews/feature-systemverilog-always-ff.png)](examples/mlir-to-systemverilog-poster.typ)
+
 ### Reference Examples
 
 - [SwiGLU + MatMul with Python math annotation](examples/mlir-swiglu-matmul.typ)
 - [MLIR to SystemVerilog (Poster)](examples/mlir-to-systemverilog-poster.typ)
-
-### Preview Gallery
-
-[![MLIR SwiGLU + MatMul preview](docs/previews/mlir-swiglu-matmul-thumb.png)](docs/previews/mlir-swiglu-matmul.pdf)
-[![MLIR to SystemVerilog preview](docs/previews/mlir-to-systemverilog-poster-thumb.png)](docs/previews/mlir-to-systemverilog-poster.pdf)
 
 ### Syntax Theme
 
@@ -109,6 +138,7 @@ MLIR color style used in these examples is bundled in:
 
 - [Publishing checklist](docs/PUBLISHING.md)
 - Local validation: `./scripts/check.sh`
+- Regenerate previews: `./scripts/generate-previews.sh`
 
 ### Credits
 
